@@ -42,7 +42,7 @@ its own: it hands the assistant verified fragments, official links and the exact
 **On WhatsApp** (closed pilot; the channel's code is not in this repository). Same verified sources, plain-language questions from someone who is not a lawyer:
 
 <p>
-<img src="assets/screenshots/whatsapp-cobro-tarjeta.png" width="300" alt="WhatsApp: a layperson asks about a card charge and Aiéntika asks for the concrete legal question">
+<img src="assets/screenshots/whatsapp-cobro.png" width="300" alt="WhatsApp: a layperson asks about a debt collection and Aiéntika answers with official links and asks which legal route is being used">
 <img src="assets/screenshots/whatsapp-rodilla.png" width="300" alt="WhatsApp: a layperson asks about a knee prosthesis wait list and Aiéntika answers in plain language with official links">
 </p>
 
