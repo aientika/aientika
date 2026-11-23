@@ -39,7 +39,7 @@ Cada artículo que nace de un hallazgo concreto lo dice (**Origen**). Una regla 
 
 **3.4 Atraso visible.** La fecha de corte se publica por sala. Un corpus atrasado se declara, no se esconde.
 
-**3.5 Lectura que falla ruidosamente.** Un stream cortado, un conteo que no cuadra o un índice vacío detienen el proceso con un error. **Origen:** un muestreo contó 914 de 1.257 resoluciones sin avisar.
+**3.5 Lectura que falla ruidosamente.** Un stream cortado, un conteo que no cuadra o un índice vacío detienen el proceso con un error.
 
 ## 4. Arquitectura y crecimiento
 
@@ -63,7 +63,7 @@ Cada artículo que nace de un hallazgo concreto lo dice (**Origen**). Una regla 
 
 ## 6. Infraestructura
 
-**6.1 Propia y separada:** un proyecto de nube propio, sin organización, a propósito: así puede moverse entero a una organización corporativa sin exportar ni redesplegar.
+**6.1 Propia y separada:** un proyecto de nube propio, que puede moverse entero a otro entorno sin exportar ni redesplegar.
 
 **6.1.1 Portabilidad corporativa (no negociable).** Sin identidades personales en el código ni en el runtime; secretos leídos por nombre; constantes de infraestructura en un solo lugar; etiquetas por producto; datos con respaldo exportable.
 
