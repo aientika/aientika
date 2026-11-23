@@ -1,0 +1,110 @@
+/* Una sola pantalla fija, modo oscuro por defecto, píldoras de vidrio. Tipografía Inter alojada aquí (sin pedir nada a terceros). */
+@font-face { font-family:"Inter"; font-style:normal; font-weight:100 900; font-display:swap; src:url(fonts/inter-latin-wght-normal.woff2) format("woff2"); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family:"Inter"; font-style:normal; font-weight:100 900; font-display:swap; src:url(fonts/inter-latin-ext-wght-normal.woff2) format("woff2"); unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+:root { --bg:#0c0d0e; --fg:#f4f4f5; --glass:rgba(255,255,255,.08); --line:rgba(255,255,255,.18); }
+:root.light { --bg:#fcfbf9; --fg:#18181b; --glass:rgba(255,255,255,.55); --line:rgba(0,0,0,.14); }
+* { box-sizing:border-box; margin:0; }
+html,body { height:100%; }
+body { background:var(--bg); color:var(--fg); font:400 14px/1.5 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; overflow:hidden; position:fixed; inset:0; width:100%; transition:background .5s,color .5s; -webkit-font-smoothing:antialiased; }
+main { position:relative; height:100%; }
+.mono { font-family:ui-monospace,Consolas,monospace; font-size:12px; }
+a { color:inherit; text-decoration:none; }
+
+.bg { position:absolute; inset:0; overflow:hidden; }
+/* Video de fondo (retrato) en ambos temas. */
+.vid { position:absolute; left:50%; top:50%; width:min(56vw,1000px); aspect-ratio:1240/556; height:auto; transform:translate(-50%,-50%); object-fit:cover; -webkit-mask-image:radial-gradient(ellipse closest-side at 50% 50%,#000 30%,transparent 100%); mask-image:radial-gradient(ellipse closest-side at 50% 50%,#000 30%,transparent 100%); }
+:root:not(.light) .bg { background:var(--bg); }
+.bg::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(to bottom,rgba(0,0,0,.35),transparent 25%,transparent 55%,rgba(0,0,0,.6)); transition:opacity .5s; }
+:root.light .bg::after { display:none; }
+
+.top,.bottom { position:absolute; left:0; right:0; display:flex; justify-content:space-between; align-items:center; padding:calc(28px + env(safe-area-inset-top)) 28px 0; gap:12px; }
+.bottom { top:auto; bottom:0; padding:0 28px calc(28px + env(safe-area-inset-bottom)); flex-wrap:wrap; }
+.pill { display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border:1px solid var(--line); border-radius:999px; background:var(--glass); color:inherit; font:500 12px/16px Inter,system-ui,sans-serif; letter-spacing:.3px; cursor:pointer; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); transition:transform .2s,background .2s; }
+.pill:hover { transform:translateY(-1px); }
+.pill:focus-visible,a:focus-visible { outline:2px solid var(--fg); outline-offset:2px; }
+.dot { width:8px; height:8px; border-radius:50%; background:var(--fg); }
+.toggle { padding:6px 8px; gap:4px; }
+.ico { width:26px; height:26px; display:grid; place-items:center; border-radius:50%; opacity:.45; }
+:root:not(.light) .moon, :root.light .sun { opacity:1; background:var(--line); }
+.id { font-size:14px; } .id strong { font-weight:600; letter-spacing:-.1px; }
+.id .sep { margin:0 8px; opacity:.5; } .id .role { opacity:.75; font-weight:300; }
+.actions { display:flex; gap:10px; flex-wrap:wrap; }
+.socials { gap:14px; cursor:default; }
+
+/* Popup "Acerca de": velo a pantalla completa, texto centrado sin tarjeta, como el original. */
+.modal { position:absolute; inset:0; display:grid; place-items:center; padding:24px; background:rgba(0,0,0,.78); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); opacity:0; pointer-events:none; transition:opacity .4s; cursor:pointer; }
+:root.light .modal { background:rgba(252,251,249,.85); }
+.modal.open { opacity:1; pointer-events:auto; }
+.cerrar { position:absolute; top:calc(28px + env(safe-area-inset-top)); right:28px; width:36px; height:36px; padding:0; justify-content:center; font-size:16px; }
+.card { max-width:520px; display:grid; gap:20px; text-align:center; transform:translateY(10px); transition:transform .4s; }
+.modal.open .card { transform:none; }
+.card h2 { font-size:30px; line-height:36px; font-weight:500; letter-spacing:-.75px; }
+.card p { font-size:16px; line-height:24px; font-weight:300; opacity:.9; }
+.links { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; list-style:none; padding:0; }
+.links a { display:inline-flex; padding:8px 14px; border:1px solid var(--line); border-radius:999px; font-size:12px; font-weight:500; letter-spacing:.3px; background:var(--glass); transition:transform .2s; }
+.links a:hover { transform:translateY(-1px); }
+.card .hint { font:400 12px/16px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; letter-spacing:.5px; opacity:.5; margin-top:8px; }
+@media (max-width:560px) { .bottom { flex-direction:column; align-items:flex-start; } }
+
+/* Tarjeta de ejemplo de analisis agentico; solo con el video (modo oscuro) y en pantallas anchas. */
+.analisis { position:absolute; right:28px; top:50%; transform:translateY(-50%); width:min(370px,31vw); padding:16px 18px; border:1px solid var(--line); border-radius:18px; background:var(--glass); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); animation:ciclo-tabla 10s ease-in-out infinite; }
+.a-head { display:flex; align-items:center; gap:8px; margin-bottom:10px; opacity:.9; }
+.dot.live { background:#5ee08a; animation:parpadeo 2s ease-in-out infinite; }
+.analisis table { width:100%; border-collapse:collapse; font-size:13px; }
+.analisis th { text-align:left; font-weight:500; opacity:.6; padding:6px 10px 6px 0; vertical-align:top; white-space:nowrap; }
+.analisis td { padding:6px 0; font-weight:400; }
+.analisis tr + tr { border-top:1px solid var(--line); }
+.a-note { margin-top:10px; font-size:11px; opacity:.5; }
+@keyframes ciclo-tabla { 0%,19% { opacity:0; transform:translateY(-46%); } 33%,80% { opacity:1; transform:translateY(-50%); } 90%,100% { opacity:0; transform:translateY(-50%); } }
+@keyframes parpadeo { 50% { opacity:.35; } }
+@media (max-width:900px) and (orientation:landscape) { .analisis { display:none; } }
+/* Celular en vertical: retrato mas grande arriba y la tabla debajo (sin linea conectora; 0.448 = 556/1240 del video). */
+@media (max-width:900px) and (orientation:portrait) {
+  .vid { width:min(92vw,700px); top:25%; }
+  .analisis { left:16px; right:16px; width:auto; top:calc(25% + min(20.6vw,157px) + 16px); transform:none; animation-name:ciclo-tabla-movil; }
+  .conector { display:none; }
+}
+@media (max-width:900px) and (orientation:portrait) and (max-height:700px) { .analisis { padding:12px 14px; } .analisis th, .analisis td { padding-top:3px; padding-bottom:3px; } .a-note { display:none; } }
+@keyframes ciclo-tabla-movil { 0%,19% { opacity:0; } 33%,80% { opacity:1; } 90%,100% { opacity:0; } }
+@media (prefers-reduced-motion:reduce) { .analisis,.dot.live { animation:none; opacity:1; } }
+
+/* Linea que une la tabla de analisis con el rostro; se calcula en app.js. */
+.conector { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible; }
+.conector line { stroke:var(--fg); stroke-width:1; opacity:.7; stroke-dasharray:var(--len,600); stroke-dashoffset:var(--len,600); animation:ciclo-linea 10s ease-in-out infinite; }
+.conector circle { fill:var(--fg); opacity:0; animation:ciclo-punto 10s ease-in-out infinite; }
+.conector #c-ini { animation-name:ciclo-punto-tabla; }
+.conector #c-aro { fill:none; stroke:var(--fg); stroke-width:1; }
+.conector.oculto { display:none; }
+@keyframes ciclo-linea { 0%,9% { stroke-dashoffset:var(--len,600); opacity:.7; } 19%,80% { stroke-dashoffset:0; opacity:.7; } 90% { stroke-dashoffset:0; opacity:0; } 100% { stroke-dashoffset:var(--len,600); opacity:0; } }
+@keyframes ciclo-punto { 0%,4% { opacity:0; } 8%,80% { opacity:.9; } 90%,100% { opacity:0; } }
+@keyframes ciclo-punto-tabla { 0%,18% { opacity:0; } 20%,80% { opacity:.9; } 90%,100% { opacity:0; } }
+@media (prefers-reduced-motion:reduce) { .conector line { animation:none; stroke-dashoffset:0; } .conector circle { animation:none; opacity:.9; } }
+
+/* Pagina "Proyectos": tarjetas con miniatura, tema y herramientas (con scroll; el inicio es de una sola pantalla fija). */
+body.pagina { position:static; overflow:auto; height:auto; min-height:100%; }
+.top.fija { position:fixed; z-index:2; }
+.lista { max-width:1040px; margin:0 auto; padding:calc(110px + env(safe-area-inset-top)) 28px 80px; }
+.lista h1 { font-size:30px; line-height:36px; font-weight:500; letter-spacing:-.75px; }
+.lista .sub { margin-top:10px; font-size:16px; line-height:24px; font-weight:300; opacity:.8; }
+.filas { list-style:none; padding:0; margin-top:36px; display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+.tarjeta { display:flex; flex-direction:column; height:100%; overflow:hidden; border:1px solid var(--line); border-radius:20px; background:var(--glass); transition:transform .25s,border-color .25s; }
+.tarjeta:hover { transform:translateY(-3px); border-color:var(--fg); }
+.tarjeta img { width:100%; aspect-ratio:16/10; object-fit:cover; object-position:top; display:block; border-bottom:1px solid var(--line); background:#000; }
+.cuerpo { padding:20px 22px 24px; display:grid; gap:10px; }
+.cuerpo h2 { font-size:17px; line-height:24px; font-weight:500; letter-spacing:-.2px; }
+.cuerpo p { font-size:14px; line-height:21px; font-weight:300; opacity:.85; }
+.cuerpo p strong { font-weight:600; opacity:1; }
+.meta { opacity:.5; letter-spacing:.3px; }
+.flecha { font-size:16px; opacity:.6; }
+@media (max-width:760px) { .filas { grid-template-columns:1fr; } }
+.lista .id { margin-bottom:18px; }
+
+/* Paginas del material (datos, tecnologia, juridica): secciones con tarjetas y botones de descarga. */
+.sec { margin-top:40px; }
+.sec h2 { font-size:12px; letter-spacing:.8px; text-transform:uppercase; opacity:.55; font-weight:500; }
+.items { list-style:none; padding:0; margin-top:12px; display:grid; gap:12px; }
+.item { display:grid; gap:6px; padding:18px 22px; border:1px solid var(--line); border-radius:18px; background:var(--glass); }
+.item h3 { font-size:16px; line-height:23px; font-weight:500; letter-spacing:-.2px; }
+.item p { font-size:14px; line-height:21px; font-weight:300; opacity:.85; }
+.item .meta { font-size:11px; }
+.acc { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }

@@ -1,0 +1,30 @@
+# Imagen del servicio Cloud Run del conector MCP.
+# CMD directo, sin entrypoint.sh. Sin credenciales: la contraseña de la base, la clave de Voyage y la clave de firma llegan
+# como variables desde Secret Manager (--set-secrets). NUNCA se define aquí CONECTOR_SIN_AUTH: lo detecta un test.
+# Copia solo el cierre de imports de `src.conector.servidor` (un test lo recalcula): el conector no trae el resto del repo.
+# El paquete de apoyo se copia sin `__init__.py` a propósito: es un paquete de espacio de nombres con solo lo que `tope_voyage` necesita.
+# Se construye desde un clon limpio del commit que se despliega, nunca desde el árbol de trabajo.
+# Python 3.14: la misma versión menor que la suite (un test compara ambas versiones).
+# Dependencias: TODO el cierre fijado en requirements-conector.txt, sin resolver nada el día del build (--no-deps); `pip check`
+# hace fallar el build si al lock le faltara una dependencia. El test de empaque compara el lock con lo que corre la suite.
+# --require-hashes: pip rechaza cualquier archivo cuyo hash no esté en el lock; --only-binary evita que un
+# paquete sin wheel se compile en el build.
+FROM python:3.14-slim
+
+COPY requirements-conector.txt /tmp/requirements-conector.txt
+RUN pip install --no-cache-dir --no-deps --require-hashes --only-binary :all: -r /tmp/requirements-conector.txt && pip check
+
+ENV TZ=America/Costa_Rica \
+    PYTHONUNBUFFERED=1 \
+    PYTHONIOENCODING=utf-8 \
+    PORT=8080
+
+WORKDIR /app
+COPY src/conector /app/src/conector
+COPY src/indice/__init__.py src/indice/alcance_vectores.py src/indice/embeber_voyage.py src/indice/esquema.py src/indice/extracto.py src/indice/postgres.py src/indice/tope_voyage.py /app/src/indice/
+COPY src/apoyo/almacen_minimo.py /app/src/apoyo/
+
+RUN useradd --no-create-home --uid 10001 conector
+USER conector
+
+CMD ["python", "-m", "src.conector.servidor"]

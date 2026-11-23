@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Aiéntika</title>
+  <meta name="description" content="Aiéntika es una iniciativa para dar accesibilidad a la sociedad mediante una capa agéntica. Su primer agente, dentro de Claude o ChatGPT, busca jurisprudencia costarricense, verifica citas y explica trámites del Estado." />
+  <link rel="canonical" href="https://aientika.ai/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_CR" />
+  <meta property="og:title" content="Aiéntika – una capa agéntica para la sociedad" />
+  <meta property="og:description" content="Un agente para facilitar la vida, dentro de Claude o ChatGPT: jurisprudencia costarricense, verificación de citas y trámites del Estado." />
+  <meta property="og:url" content="https://aientika.ai/" />
+  <meta property="og:image" content="https://alejoherrera.com/video/aientika_familia_poster.jpg" />
+  <meta name="theme-color" content="#0c0d0e" />
+  <link rel="icon" type="image/svg+xml" href="/sitio/logo.svg" />
+  <link rel="stylesheet" href="/sitio/style.css" />
+  <link rel="stylesheet" href="/sitio/aientika.css" />
+</head>
+<body>
+  <main>
+    <div class="bg ag-bg" aria-hidden="true">
+      <video class="ag-vid" src="https://alejoherrera.com/video/aientika_familia.mp4" poster="https://alejoherrera.com/video/aientika_familia_poster.jpg" autoplay muted loop playsinline preload="auto"></video>
+    </div>
+
+    <header class="top">
+      <a class="marca" href="/" aria-label="Aiéntika"><img src="/sitio/logo.svg" alt="" width="40" height="40" /></a>
+      <a class="pill" href="#equipo">Andrés y Alejandro Herrera</a>
+      <button class="pill toggle" id="theme" role="switch" aria-label="Cambiar a modo claro" aria-checked="true">
+        <span class="ico sun">&#9728;</span><span class="ico moon">&#9790;</span>
+      </button>
+    </header>
+
+    <section class="ag">
+      <div class="heroe">
+      <h1>Aiéntika<span class="lema">IA para facilitar la vida humana</span></h1>
+      <p class="desc">Una iniciativa para dar accesibilidad a la sociedad mediante una capa agéntica: una orquesta de agentes que buscan, ordenan y explican la información pública, con la fuente a la vista.</p>
+      <div class="acc">
+        <button class="pill" type="button" data-asistente="claude">Instalar en Claude</button>
+        <button class="pill" type="button" data-asistente="chatgpt">Instalar en ChatGPT</button>
+        <button class="pill" type="button" id="ver-ejemplos">Ejemplos de uso</button>
+        <a class="pill" id="acceso" href="https://docs.google.com/forms/d/e/1FAIpQLSfTmR7RL-LjEx7D-gh6zU8kqh3zfyuweTExgO_8FEqX2S-oxA/viewform" target="_blank" rel="noopener">Pedir acceso</a>
+      </div>
+      <p class="como">En Claude, empezá tu pregunta con <b>«aientika»</b>. En ChatGPT, escribí <b>@ai</b> y elegí <b>Aiéntika</b> en el menú.</p>
+      </div>
+      <div class="agente">
+        <span class="rotulo mono"><span class="dot live"></span>Primer agente de la orquesta</span>
+        <h2>Agente para facilitar la vida</h2>
+        <p>Funciona dentro de Claude o ChatGPT.</p>
+        <p>Hoy puede:</p>
+        <ul class="hoy">
+          <li><b>Buscar jurisprudencia</b> de 51 despachos entre Salas y tribunales de Costa Rica (más de 370&nbsp;000 resoluciones, de 2022 a hoy), por palabras y por significado, con el enlace oficial de cada fallo. La búsqueda por significado cubre las Salas en todos los años y los tribunales solo en parte; en el resto busca por palabras. Cada respuesta te dice qué cubrió.</li>
+          <li><b>Distinguir</b> lo que el tribunal decide de lo que solo menciona, y avisar si el fallo tiene votos salvados.</li>
+          <li><b>Mostrar el encabezado y el «por tanto»</b> de un fallo, con el enlace oficial para leerlo completo.</li>
+          <li><b>Verificar una cita</b>: si la frase está literal en el fallo y en qué parte cae, antes de que la usés.</li>
+          <li><b>Explicar trámites del Estado</b>: requisitos, costo, plazo y fundamento de más de 2&nbsp;000 trámites de 92 instituciones del Catálogo Nacional de Trámites, citando la ficha y la fecha.</li>
+          <li><b>Guiarte en un escrito</b> (amparo, demanda, contestación o recurso) con «aientika ayudame».</li>
+          <li><b>Decirte qué información tiene</b> y hasta qué fecha está actualizada.</li>
+          <li><b>Avisarnos</b> cuando una respuesta no te sirvió, para corregirla.</li>
+        </ul>
+        <p>Atiende las 24 horas.</p>
+        <p class="hint">En camino: los votos del Tribunal Registral Administrativo (marcas, inmuebles y personas jurídicas). Todavía no se pueden consultar.</p>
+      </div>
+      <div class="equipo" id="equipo">
+        <span class="rotulo mono">Construido por</span>
+        <ul>
+          <li><img src="/sitio/equipo/andres.jpg" alt="Andrés Herrera" width="72" height="72" loading="lazy" /><strong>Andrés Herrera</strong>
+            <span>Desarrollador</span>
+            <span><a href="https://www.linkedin.com/in/andresherreramonge/" target="_blank" rel="noopener">LinkedIn</a></span></li>
+          <li><img src="/sitio/equipo/alejandro.jpg" alt="Alejandro Herrera" width="72" height="72" loading="lazy" /><strong>Alejandro Herrera</strong>
+            <span>Colaborador</span>
+            <span><a href="https://alejoherrera.com" target="_blank" rel="noopener">alejoherrera.com</a> &middot; <a href="https://www.linkedin.com/in/alejandro-herreracr/" target="_blank" rel="noopener">LinkedIn</a></span></li>
+        </ul>
+      </div>
+    </section>
+
+
+    <div class="modal" id="modal" aria-hidden="true">
+      <button class="pill cerrar" aria-label="Cerrar">&#10005;</button>
+      <div class="card ancha" role="dialog" aria-labelledby="mt">
+        <h2 id="mt">Instalar Aiéntika</h2>
+        <div class="copiar">
+          <code id="direccion"></code>
+          <button class="pill" id="copiar" type="button">Copiar</button>
+        </div>
+        <p class="hint estado" id="estado" role="status" aria-live="polite"></p>
+        <div class="bloque" data-pasos="claude">
+          <video class="demo" controls playsinline preload="none" poster="https://alejoherrera.com/video/aientika_instalar_claude.jpg" src="https://alejoherrera.com/video/aientika_instalar_claude.mp4"></video>
+          <ol class="pasos">
+            <li>Copiá la dirección del conector (arriba).</li>
+            <li>En Claude: <b>Personalización</b> &rarr; <b>Conectores</b> &rarr; <b>Agregar</b> &rarr; <b>Agregar conector personalizado</b>. Nombre: <b>Aiéntika: jurisprudencia y trámites de Costa Rica</b>; pegá la dirección y tocá <b>Continuar</b>.</li>
+            <li>Dejá las opciones de autenticación como vienen y tocá <b>Agregar</b>. Después tocá <b>Conectar</b>, ingresá tu código de invitación y tocá <b>Autorizar</b>.</li>
+            <li>Recomendado: en el conector, «Herramientas de solo lectura» &rarr; <b>Permitir siempre</b>, para que no te pida aprobación en cada búsqueda.</li>
+            <li>Al preguntar, empezá con <b>«aientika»</b> (por ejemplo, «aientika, jurisprudencia sobre…» o «aientika ayudame»). La respuesta cierra con «Fuente: base de Aiéntika».</li>
+          </ol>
+        </div>
+        <div class="bloque" data-pasos="chatgpt" hidden>
+          <video class="demo" controls playsinline preload="none" poster="https://alejoherrera.com/video/aientika_instalar_chatgpt.jpg" src="https://alejoherrera.com/video/aientika_instalar_chatgpt.mp4"></video>
+          <ol class="pasos">
+            <li>Copiá la dirección del conector (arriba).</li>
+            <li>En ChatGPT: <b>Complementos</b> &rarr; <b>Agregar</b> &rarr; <b>Agregar servidor MCP personalizado</b> (en inglés: Plugins &rarr; Add &rarr; Add custom MCP server). Nombre: <b>Aiéntika: jurisprudencia y trámites de Costa Rica</b>; en Conexión, <b>URL del servidor</b>: pegá la dirección; Autenticación: <b>OAuth</b>.</li>
+            <li>Marcá «Entiendo y quiero continuar», tocá <b>Crear como complemento</b> y después <b>Conectar Aiéntika</b>. Ingresá tu código de invitación y tocá <b>Autorizar</b>.</li>
+            <li>Al preguntar, escribí <b>@ai</b> y <b>elegí Aiéntika en el menú</b> (queda como una etiqueta azul en el mensaje); después escribí tu pregunta. Si tu mensaje no lleva la etiqueta Aiéntika o la respuesta no trae fallos con su enlace oficial, no la consultó: repetila eligiendo la app.</li>
+          </ol>
+        </div>
+        <p class="hint">Acceso por invitación &middot; cupo por persona &middot; las 24 horas</p>
+      </div>
+    </div>
+
+    <div class="modal" id="ejemplos" aria-hidden="true">
+      <button class="pill cerrar" aria-label="Cerrar">&#10005;</button>
+      <div class="card ancha" role="dialog" aria-labelledby="et">
+        <h2 id="et">Ejemplos de uso</h2>
+        <div class="pestanas" role="group" aria-label="Asistente">
+          <button class="pill" type="button" data-ejemplo="claude" aria-pressed="true">En Claude</button>
+          <button class="pill" type="button" data-ejemplo="chatgpt" aria-pressed="false">En ChatGPT</button>
+        </div>
+        <div class="bloque" data-video="claude">
+          <video class="demo" controls playsinline preload="none" poster="https://alejoherrera.com/video/aientika_uso_claude.jpg" src="https://alejoherrera.com/video/aientika_uso_claude.mp4"></video>
+          <p>«aientika, ¿qué ha dicho la Sala Constitucional sobre las listas de espera para cirugías en la CCSS?» Empezá la pregunta con «aientika».</p>
+          <video class="demo" controls playsinline preload="none" poster="https://alejoherrera.com/video/aientika_accidente_claude.jpg" src="https://alejoherrera.com/video/aientika_accidente_claude.mp4"></video>
+          <p>Una demanda por un accidente laboral que el INS no quiere cubrir: la vía que corresponde, fallos de los tribunales de trabajo con su enlace oficial y cómo cambia el caso con un dato nuevo. Con voz y subtítulos.</p>
+        </div>
+        <div class="bloque" data-video="chatgpt" hidden>
+          <video class="demo" controls playsinline preload="none" poster="https://alejoherrera.com/video/aientika_uso_chatgpt.jpg" src="https://alejoherrera.com/video/aientika_uso_chatgpt.mp4"></video>
+          <p>«¿Qué ha dicho la Sala Constitucional sobre las listas de espera para cirugías en la CCSS?» Escribí <b>@ai</b>, elegí <b>Aiéntika</b> en el menú y después escribí la pregunta.</p>
+          <video class="demo" controls playsinline preload="none" poster="https://alejoherrera.com/video/aientika_amparo_chatgpt.jpg" src="https://alejoherrera.com/video/aientika_amparo_chatgpt.mp4"></video>
+          <p>Un recurso de amparo para que la CCSS ponga una prótesis de rodilla, con un antecedente del mismo hospital y su enlace oficial, y los datos que faltan para la versión definitiva. Con voz y subtítulos.</p>
+        </div>
+        <p class="hint">Ejemplos grabados con cuentas gratuitas de Claude y ChatGPT &middot; noviembre de 2026</p>
+      </div>
+    </div>
+  </main>
+  <script src="/sitio/tema.js"></script>
+  <script src="/sitio/analitica.js"></script>
+  <script src="/sitio/aientika.js"></script>
+</body>
+</html>

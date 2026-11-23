@@ -1,0 +1,83 @@
+/* Estilos propios de la página de Aiéntika. */
+    /* Página de Aiéntika: minimalista, mismo formato que el inicio. */
+    .ag-vid { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .ag-bg::after { background:linear-gradient(to right,rgba(0,0,0,.78),rgba(0,0,0,.35) 55%,rgba(0,0,0,.15)),linear-gradient(to bottom,rgba(0,0,0,.35),transparent 30%,transparent 60%,rgba(0,0,0,.65)); }
+    :root.light .ag-bg::after { display:block; background:linear-gradient(to right,rgba(252,251,249,.92),rgba(252,251,249,.55) 55%,rgba(252,251,249,.2)); }
+    .ag { position:absolute; left:28px; top:50%; transform:translateY(-50%); max-width:min(520px,calc(100% - 56px)); display:grid; gap:18px; }
+    .ag h1 { font-size:44px; line-height:48px; font-weight:500; letter-spacing:-1.2px; }
+    .ag h1 .lema { display:block; margin-top:6px; font-size:20px; line-height:26px; font-weight:300; letter-spacing:-.2px; opacity:.9; }
+    .ag p { font-size:16px; line-height:24px; font-weight:300; opacity:.9; }
+    .ag .agente { padding:16px 18px; border:1px solid var(--line); border-radius:18px; background:var(--glass); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); display:grid; gap:8px; }
+    .ag .agente h2 { font-size:17px; line-height:24px; font-weight:500; letter-spacing:-.2px; }
+    .ag .agente p { font-size:14px; line-height:21px; }
+    .ag .rotulo { display:flex; align-items:center; gap:8px; opacity:.75; }
+    .ag .acc { display:flex; flex-wrap:wrap; gap:8px; }
+    .ag .hoy { margin:0; padding-left:18px; display:grid; gap:5px; font-size:13.5px; line-height:19px; font-weight:300; opacity:.92; }
+    .ag .hoy b { font-weight:500; }
+    /* Con la lista de lo que hace hoy, el bloque puede ser más alto que la pantalla: nunca sube por encima del encabezado. */
+    .ag { max-height:calc(100% - 170px); overflow-y:auto; scrollbar-width:thin; scrollbar-color:var(--line) transparent; }
+    .ag::-webkit-scrollbar { width:6px; } .ag::-webkit-scrollbar-thumb { background:var(--line); border-radius:3px; } .ag::-webkit-scrollbar-track { background:transparent; }
+    .pasos { text-align:left; display:grid; gap:10px; margin:0; padding-left:20px; font-size:15px; line-height:22px; font-weight:300; }
+    .pasos[hidden] { display:none; }
+    .copiar { display:flex; gap:8px; align-items:center; justify-content:center; flex-wrap:wrap; }
+    .copiar code { font:400 12px/16px ui-monospace,Consolas,monospace; padding:9px 12px; border:1px solid var(--line); border-radius:12px; background:var(--glass); max-width:100%; overflow-x:auto; white-space:nowrap; }
+    .estado { min-height:16px; }
+    /* Videos de instalación y de uso. */
+    .modal { overflow-y:auto; }
+    .modal .card.ancha { max-width:min(760px,100%); }
+    .demo { width:100%; aspect-ratio:16/9; border:1px solid var(--line); border-radius:14px; background:#000; cursor:default; }
+    .bloque[hidden] { display:none; }
+    .bloque { display:grid; gap:14px; }
+    .pestanas { display:flex; gap:8px; justify-content:center; }
+    .pestanas .pill[aria-pressed="true"] { background:var(--fg); color:var(--bg); }
+    @media (max-width:700px) { .modal { place-items:start center; } }
+    /* En celular el bloque no sube por encima del encabezado: si no cabe, se desplaza por dentro (el body es fijo). */
+    @media (max-width:700px) { .ag { max-height:calc(100% - 96px - env(safe-area-inset-bottom)); overflow-y:auto; } }
+    /* Equipo: fotos del mismo tamaño, en círculo y en blanco y negro. */
+    .equipo { display:grid; gap:10px; }
+    .equipo ul { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .equipo li { display:grid; justify-items:center; align-content:start; text-align:center; gap:4px; }
+    .equipo img { width:72px; height:72px; border-radius:50%; object-fit:cover; filter:grayscale(1); border:1px solid var(--line); }
+    .equipo strong { font-size:14px; line-height:18px; font-weight:500; }
+    .equipo span { font-size:12px; line-height:16px; font-weight:300; opacity:.85; }
+    .equipo a { color:inherit; text-decoration:underline; text-underline-offset:2px; }
+    @media (max-width:700px) { .equipo img { width:52px; height:52px; } .heroe > p.desc { display:none; } }
+    @media (max-width:700px) { .ag { top:auto; bottom:calc(20px + env(safe-area-inset-bottom)); transform:none; } .ag h1 { font-size:34px; line-height:38px; } }
+    /* Video de la familia: se muestra ENTERO, sin recortar. En
+       computadora, a la derecha del panel con el borde izquierdo difuminado; en celular, una franja 16:9 arriba y el panel debajo. */
+    @media (min-width:701px) { .ag-vid { left:auto; right:0; width:calc(100% - 540px); object-fit:contain; -webkit-mask-image:linear-gradient(to right,transparent,#000 14%); mask-image:linear-gradient(to right,transparent,#000 14%); } }
+    @media (max-width:700px) { .ag-vid { top:calc(76px + env(safe-area-inset-top)); bottom:auto; height:auto; aspect-ratio:16/9; }
+      .ag { max-height:calc(100% - 76px - 56.25vw - 28px - env(safe-area-inset-bottom)); } }
+
+/* Escritorio: en vez del panel angosto con desplazamiento propio sobre el
+   video, una página normal: arriba la portada (título, botones y el video a la derecha, alto de pantalla) y abajo, a todo el ancho,
+   lo que hace hoy y el equipo. Hasta 900 px sigue el panel de siempre. */
+.ag .heroe { display:grid; gap:18px; }
+.ag .heroe .como { font-size:14px; line-height:21px; opacity:.8; }
+@media (min-width:901px) {
+  body { position:static; overflow-x:hidden; overflow-y:auto; height:auto; min-height:100%; }
+  main { height:auto; min-height:100vh; }
+  .bg.ag-bg { position:absolute; top:0; left:0; right:0; bottom:auto; height:100vh; }
+  .modal { position:fixed; z-index:5; }
+  .ag { position:relative; left:auto; top:auto; transform:none; max-width:1200px; max-height:none; overflow:visible; margin:0 auto;
+        padding:0 56px 80px; display:block; }
+  .ag .heroe { min-height:100vh; max-width:500px; align-content:center; gap:22px; padding:110px 0 64px; box-sizing:border-box; }
+  .ag h1 { font-size:64px; line-height:66px; letter-spacing:-2px; }
+  .ag h1 .lema { font-size:24px; line-height:30px; margin-top:10px; }
+  .ag .heroe .desc { font-size:17px; line-height:26px; }
+  .ag .agente { padding:32px 36px; gap:14px; border-radius:22px; }
+  .ag .agente h2 { font-size:26px; line-height:32px; letter-spacing:-.6px; }
+  .ag .agente p { font-size:15px; line-height:22px; }
+  .ag .hoy { list-style:none; padding:0; margin-top:6px; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px 32px; }
+  .ag .hoy li { border-top:1px solid var(--line); padding-top:14px; font-size:15px; line-height:23px; }
+  .ag .hoy b { font-size:16px; }
+  html { scroll-behavior:smooth; }
+  .ag .equipo { margin-top:56px; gap:18px; }
+  .ag .equipo ul { gap:32px; }
+  .equipo img { width:104px; height:104px; }
+  .equipo strong { font-size:16px; line-height:22px; }
+  .equipo span { font-size:13px; line-height:19px; }
+}
+.top .marca { display:inline-flex; line-height:0; border-radius:10px; }
+.top .marca img { display:block; width:40px; height:40px; border-radius:10px; }
+.top .marca + .pill { margin-right:auto; }
