@@ -41,7 +41,7 @@ fragmentos verificados, enlaces oficiales y los límites exactos de lo que dicen
 **En WhatsApp** (piloto cerrado; el código del canal no está en este repositorio). Las mismas fuentes verificadas, con preguntas en lenguaje cotidiano de alguien que no es jurista:
 
 <p>
-<img src="assets/screenshots/whatsapp-cobro-tarjeta.png" width="300" alt="WhatsApp: una persona no jurista pregunta por un cobro con tarjeta y Aiéntika le pide la consulta jurídica concreta">
+<img src="assets/screenshots/whatsapp-cobro.png" width="300" alt="WhatsApp: una persona no jurista pregunta por un cobro y Aiéntika responde con enlaces oficiales y le pregunta por qué vía le están cobrando">
 <img src="assets/screenshots/whatsapp-rodilla.png" width="300" alt="WhatsApp: una persona no jurista pregunta por la lista de espera de una prótesis de rodilla y Aiéntika responde en lenguaje sencillo con enlaces oficiales">
 </p>
 
