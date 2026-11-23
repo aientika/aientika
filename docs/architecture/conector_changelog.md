@@ -151,17 +151,10 @@ rótulo afirma ya que algo sea criterio de la Sala.
 8. **`por_tanto` sin dispositiva hallada** (no por la guarda): sigue siendo `""` como en la 1.2.0, con `dispositiva_localizada: false`;
    `null` queda reservado a la guarda de estructura.
 
-### 1.3.0 — decisión de emisión medida (2026-11-12, sin cambio de contrato)
+### 1.3.0 — decisión de emisión (2026-11-12, sin cambio de contrato)
 
-Medición sobre una reserva de 60 fallos (489 oraciones, acuerdo entre jueces κ 0,94-0,95): `secciones_fondo.EMISION` enciende
-`antecedente` en la Sala Constitucional y la Sala Segunda. `alegato` falló en la Sala Segunda (0,754) y en la familia de la Sala
-Tercera (0,861), por títulos de motivo dentro del tramo; `veredicto` no llegó al mínimo de 35 oraciones ni con el lote de ampliación
-(30). Ambos quedan apagados: lo que no se emite es `considerando_sin_clasificar`.
-
-## 1.4.0 — 2026-11-12
-
-La entrada es la misma que en la 1.3.0, así que la huella no cambia. Cambia la **salida** de `buscar`, `ficha` y `verificar_cita`
-en los fallos que marca la guarda de estructura: 26.730 de 325.869 sentencias, el 8,2 %.
+`secciones_fondo.EMISION` enciende `antecedente` en la Sala Constitucional y la Sala Segunda. `alegato` y `veredicto` quedan
+apagados: lo que no se emite es `considerando_sin_clasificar`.
 
 - En la 1.3.0, `por_tanto` salía en null en esos fallos. Ahora trae la dispositiva que elige `extracto.por_tanto`, con
   `dispositiva_localizada = true`.
@@ -178,7 +171,7 @@ en los fallos que marca la guarda de estructura: 26.730 de 325.869 sentencias, e
 
 - **Corte del «por tanto» al final de una oración.** `buscar` y `ficha` cortan el «por tanto» al final de una oración, terminado en
   «[…]», y agregan `por_tanto_recortado`. Antes se cortaba por palabra, y en una prueba en vivo el corte cayó a media oración de un
-  voto salvado, de modo que el modelo atribuyó a una magistrada una condena en costas que en realidad la resolución le niega. Las
+  voto salvado, y el modelo podía atribuir a quien salvó el voto lo que la resolución le niega. Las
   instrucciones piden la `ficha` antes de afirmar algo de la parte recortada.
 - **Registro de uso.** Sin cambio de parámetros: la huella es la misma.
   - **Aviso de privacidad v2** (`pantalla.AVISO_VERSION = 2`): dice que el texto de las búsquedas y de las frases verificadas, con
@@ -205,6 +198,16 @@ en los fallos que marca la guarda de estructura: 26.730 de 325.869 sentencias, e
   fecha de metadato imposible (por ejemplo «1990-01-05» en un voto de 2023) y con `min(fecha)` el catálogo decía «desde 1990» de una
   base que empieza en 2022.
 - Lo que no se pudo leer dice «NO DISPONIBLE ahora», nunca cero. Los trámites del MEIC pasan a `activa` en el registro de fuentes.
+
+## 1.6.0 — 2026-11-13
+
+Trámites del Estado: nuevas herramientas `tramites_buscar`, `tramite` y `catalogo` (otra entrada, otra huella). La fuente se cita
+siempre (Catálogo Nacional de Trámites del MEIC, ficha, fecha y enlace).
+
+## 1.7.0 — 2026-11-13
+
+Misma entrada (misma huella que 1.6.0). `catalogo` cambia la salida: una ficha por fuente con cantidad, período y fecha de
+actualización, y la jurisprudencia por Sala y tribunal.
 
 ## 1.8.0 — 2026-11-14
 
@@ -249,8 +252,7 @@ a v4 («el enlace a aientika.ai»); la referencia cifrada de la visita va solo c
 
 ## 1.14.0 — 2026-11-18
 
-Nueva base de datos gestionada. Misma entrada. **El horario pasa a 7:00-23:00**, hora de Costa Rica (`limites.HORA_APERTURA` = 7),
-porque la base se enciende unos minutos antes de abrir y se apaga a las 23:00. Esto cambia la regla del 1.0.0 «de 6:00 a 23:00».
+Nueva base de datos gestionada. Misma entrada. **El horario pasa a 7:00-23:00**, hora de Costa Rica (`limites.HORA_APERTURA` = 7). Esto cambia la regla del 1.0.0 «de 6:00 a 23:00».
 Todos los textos que dicen el horario usan la constante, y lo vigila
 `test_todo_texto_del_horario_dice_la_hora_de_apertura_de_la_constante`. Con `REPLICA_DB_CA`, la conexión va con TLS que verifica la
 CA de la base. Cuando una conexión falla en horario, el conector registra «[conector-bd] base no disponible en horario» y el

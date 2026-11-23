@@ -69,7 +69,7 @@ echo
 echo "# 1. APIs"
 echo "gcloud services enable run.googleapis.com artifactregistry.googleapis.com cloudbuild.googleapis.com secretmanager.googleapis.com ${ID}"
 echo
-echo "# 2. Cuenta de servicio con mínimo privilegio y sin claves JSON: solo lee SUS tres secretos; no tiene roles de Cloud SQL"
+echo "# 2. Cuenta de servicio con mínimo privilegio y sin claves JSON: solo lee SUS secretos; no tiene roles de Cloud SQL"
 echo "gcloud iam service-accounts create ${SA} --display-name='Conector MCP' ${ID}"
 echo
 echo "# 3. Secretos (los crea el equipo; nada de esto se imprime ni se guarda en el repo)"
