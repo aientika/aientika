@@ -31,6 +31,22 @@ fragmentos verificados, enlaces oficiales y los límites exactos de lo que dicen
 > Este repositorio contiene **solo el conector**. El índice de jurisprudencia que consulta (un RAG que ya existe y vive en un servicio
 > privado aparte) no forma parte de este repositorio. **Durante la hackathon incorporamos capacidades de gestión jurídica mediante WhatsApp** (piloto cerrado); ese canal no se incluye aquí.
 
+## Ejemplos
+
+**En Claude** (una consulta laboral formulada como la haría un abogado; la respuesta cita cada fallo con su enlace oficial y cierra con lo que *no* se verificó):
+
+![Claude responde una consulta laboral con Aiéntika, parte 1](assets/screenshots/claude-laboral-1.png)
+![Claude responde una consulta laboral con Aiéntika, parte 2](assets/screenshots/claude-laboral-2.png)
+
+**En WhatsApp** (piloto cerrado; el código del canal no está en este repositorio). Las mismas fuentes verificadas, con preguntas en lenguaje cotidiano de alguien que no es jurista:
+
+<p>
+<img src="assets/screenshots/whatsapp-cobro-tarjeta.png" width="300" alt="WhatsApp: una persona no jurista pregunta por un cobro con tarjeta y Aiéntika le pide la consulta jurídica concreta">
+<img src="assets/screenshots/whatsapp-rodilla.png" width="300" alt="WhatsApp: una persona no jurista pregunta por la lista de espera de una prótesis de rodilla y Aiéntika responde en lenguaje sencillo con enlaces oficiales">
+</p>
+
+**La respuesta ajusta su léxico según quién pregunta.** Con un profesional del derecho, el agente usa lenguaje técnico (artículos, salas, números de sentencia, términos procesales). Con una persona no jurista, explica en palabras sencillas, evita la jerga y dice qué conviene revisar después. En ambos casos las reglas no cambian: cada fallo trae su enlace oficial, la respuesta declara hasta qué fecha llegan los datos y qué no verificó, y no se cita nada que no pueda comprobarse contra el texto de la fuente.
+
 ## El problema
 
 Los asistentes jurídicos fallan de una manera muy concreta: producen una cita o una norma que *parece* correcta y no lo es. En derecho
