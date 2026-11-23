@@ -32,6 +32,22 @@ its own: it hands the assistant verified fragments, official links and the exact
 > This repository contains **the connector only**. The case-law index it queries (a RAG that already exists and is kept
 > in a separate, private service) is not part of this repository. **During the hackathon we incorporated legal-matter management capabilities through WhatsApp** (closed pilot); that channel is not included here.
 
+## Examples
+
+**In Claude** (a labor-law question phrased the way a lawyer would ask it; the answer cites each ruling with its official link and closes with what was *not* verified):
+
+![Claude answering a labor-law question with Aiéntika, part 1](assets/screenshots/claude-laboral-1.png)
+![Claude answering a labor-law question with Aiéntika, part 2](assets/screenshots/claude-laboral-2.png)
+
+**On WhatsApp** (closed pilot; the channel's code is not in this repository). Same verified sources, plain-language questions from someone who is not a lawyer:
+
+<p>
+<img src="assets/screenshots/whatsapp-cobro-tarjeta.png" width="300" alt="WhatsApp: a layperson asks about a card charge and Aiéntika asks for the concrete legal question">
+<img src="assets/screenshots/whatsapp-rodilla.png" width="300" alt="WhatsApp: a layperson asks about a knee prosthesis wait list and Aiéntika answers in plain language with official links">
+</p>
+
+**The answer adapts its vocabulary to who is asking.** With a legal professional, the agent uses technical language (articles, chambers, ruling numbers, procedural terms). With someone who is not a jurist, it explains in plain words, avoids jargon and says what to check next. In both cases the rules do not change: every ruling comes with its official link, the answer states the date of the data and what it did not verify, and nothing is cited that cannot be checked against the source text.
+
 ## The problem
 
 Legal assistants fail in a specific way: they produce a quote or a norm that *looks* right and is not. In law that is not a
